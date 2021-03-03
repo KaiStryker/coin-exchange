@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import CoinList from './components/CoinList/CoinList';
 import AccountBalance from './components/AccountBalance/AccountBalance'
 import Header from './components/Header/Header'

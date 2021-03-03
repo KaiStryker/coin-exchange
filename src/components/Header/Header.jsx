@@ -28,7 +28,6 @@ export default class Header extends Component {
           <Img src={logo} alt="React logo"/>
           <H1>
             Coin Exchange 
-
           </H1>
         </Head>
         )

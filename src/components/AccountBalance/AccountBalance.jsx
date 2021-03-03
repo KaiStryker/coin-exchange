@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import './AccountBalance.css'
 import styled from 'styled-components'
 
-const Section = styled.section`
+const Section = styled.section `
     font-size: 2rem;
     text-align: left;
     padding: 1.5rem, 0rem, 1.5rem, 5rem;
@@ -14,7 +14,7 @@ export default class AccountBalance extends Component {
     render() {
         return (
             <Section>
-                Balance: $ {this.props.amount}
+                Balance: ${this.props.amount}
             </Section>
         )
     }
