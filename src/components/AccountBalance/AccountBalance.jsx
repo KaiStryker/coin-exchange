@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
@@ -9,37 +9,26 @@ const Section = styled.section `
 `
 
 
-export default class AccountBalance extends Component {
-    
-    constructor(props){
-        super(props);
-        this.changeButtonstate = this.changeButtonstate.bind(this);
-        }
-       
-    
-  
-   changeButtonstate(event) {
+export default function AccountBalance(props){
+
+   const changeButtonstate = (event) => {
       event.preventDefault();
-      this.props.handleDisplayChange(this.props.showBalance);
+      props.handleDisplayChange(props.showBalance);
        
    } 
-    
-    
-    
-    render() {
-        const buttonText = this.props.showBalance ? 'Hide Balance': 'Show Balance';
+        const buttonText = props.showBalance ? 'Hide Balance': 'Show Balance';
         let content = null;
-        if (this.props.showBalance){
-        content= <>Balance: ${this.props.amount} </>;
+        if (props.showBalance){
+        content= <>Balance: ${props.amount} </>;
     }
         return (
             <Section>
                 {content} 
-                <button onClick={this.changeButtonstate}>{buttonText}</button>
+                <button onClick={changeButtonstate}>{buttonText}</button>
             </Section>
             
         )
-    }
+    
 }
 
 AccountBalance.propTypes = { 
