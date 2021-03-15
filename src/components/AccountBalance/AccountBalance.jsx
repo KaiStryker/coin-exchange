@@ -8,14 +8,21 @@ const Section = styled.section `
     padding: 1.5rem, 0rem, 1.5rem, 5rem;
 `
 
-
 export default function AccountBalance(props){
 
    const changeButtonstate = (event) => {
       event.preventDefault();
       props.handleDisplayChange(props.showBalance);
        
-   } 
+   }
+
+   const updateBalance = (event) => {
+      event.preventDefault();
+      props.handleBalanceChange();
+    
+ } 
+
+
         const buttonText = props.showBalance ? 'Hide Balance': 'Show Balance';
         let content = null;
         if (props.showBalance){
@@ -25,7 +32,9 @@ export default function AccountBalance(props){
             <Section>
                 {content} 
                 <button onClick={changeButtonstate}>{buttonText}</button>
+                <button onClick={updateBalance}>Add Funds </button>
             </Section>
+
             
         )
     

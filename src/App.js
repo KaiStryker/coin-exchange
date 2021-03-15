@@ -10,7 +10,7 @@ const Div = styled.div `
   background-color: rgb(55, 119, 119);
   color: #cccccc;
 `
-//import { v4 as uuidv4} from 'uuid'
+
 const COIN_COUNT = 10;
 const formatPrice = price => parseFloat(Number(price.toFixed(4)));
 
@@ -64,12 +64,18 @@ function App (props){
   const handleDisplayChange = () => {
     setshowBalance(oldValue => !oldValue);
 }
+
+  const handleBalanceChange = () => {
+    setBalance(balance + 2000);
+  }
+
     return (
       <Div>
         <Header />
         <AccountBalance amount = {balance} 
          showBalance={showBalance} 
-         handleDisplayChange ={handleDisplayChange}/>
+         handleDisplayChange ={handleDisplayChange}
+         handleBalanceChange = {handleBalanceChange}/>
         <CoinList coinData = {coinData} 
          handleRefresh={handleRefresh}
          showBalance={showBalance} />
