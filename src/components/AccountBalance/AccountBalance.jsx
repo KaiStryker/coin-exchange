@@ -4,9 +4,30 @@ import styled from 'styled-components'
 
 const Section = styled.section `
     font-size: 2rem;
-    text-align: left;
-    padding: 1.5rem, 0rem, 1.5rem, 5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    line-height: 3rem;
+    display: inline-block;
+
 `
+const Button = styled.button `
+    margin: 0 8px;
+`
+const BalanceToggleButton = styled(Button)`
+    width: 150px;
+`
+
+const Balance = styled.div `
+    min-width: 250px;
+    margin: 0.5rem 0 0 2.5rem
+    font-size: 1.5em;
+    vertical-align: middle;
+    text-align: left;
+`
+var formatter = Intl.NumberFormat('en-us', {
+    style: 'currency',
+    currency: 'USD'
+});
 
 export default function AccountBalance(props){
 
@@ -24,19 +45,23 @@ export default function AccountBalance(props){
 
 
         const buttonText = props.showBalance ? 'Hide Balance': 'Show Balance';
-        let content = null;
+        let content = '\u00A0';
         if (props.showBalance){
-        content= <>Balance: ${props.amount} </>;
-    }
+            content= <>{formatter.format(props.amount)} </>;
+        }
+        const buttonclass = 'btn ' + (props.showBalance ? 'btn-warning' : 'btn-info')
+        const buttonclass2 = 'btn btn-success'
+    
         return (
+        <>
+            <Balance>{content}</Balance>
             <Section>
-                {content} 
-                <button onClick={changeButtonstate}>{buttonText}</button>
-                <button onClick={updateBalance}>Add Funds </button>
+                <BalanceToggleButton onClick={changeButtonstate} className={buttonclass}>{buttonText}</BalanceToggleButton>
+                <Button onClick={updateBalance} className={buttonclass2}><i className="fas fa-helicopter"></i> Add Funds </Button>
             </Section>
 
-            
-        )
+        </>
+        );
     
 }
 

@@ -4,37 +4,61 @@ import styled from 'styled-components'
 
 const Td = styled.td `
     border: 1px solid #cccccc;
-    width: 25vh;
+    width: 14vw;
 `
-
-
+const TdControls = styled(Td)`
+    width: 34vw;
+`
+const Button = styled.button `
+    font-size: 11px;
+    Width: 64px;
+    Margin: 3px 5px 0;
+`
+const TdName =styled(Td)`
+    width: 24vw;
+`
 export default function Coin(props){
    
-   const handleClick = (event) => {
+   const handleRefresh = (event) => {
         //Prevent the default action of submitting the form
         event.preventDefault();
         props.handleRefresh(props.tickerId);
-        /*
-        const randomPercentage = 0.995 + Math.random() * 0.01;   
-        this.setState( function(oldstate){
-            return{
-                price: oldstate.price * randomPercentage
-            };
-        });
-        */
+        
+   } 
+
+   const handleBuy = (event) => {
+    //Prevent the default action of submitting the form
+    event.preventDefault();
+    props.handleTransaction(true, props.tickerId);
+    
+   } 
+
+const handleSell = (event) => {
+    //Prevent the default action of submitting the form
+    event.preventDefault();
+    props.handleTransaction(false, props.tickerId);
+    
    } 
     
         return (
             <tr> 
-              <Td>{props.name}</Td>
+              <TdName>{props.name}</TdName>
               <Td>{props.ticker}</Td>
               <Td>${props.price}</Td>
-              {props.showBalance ? <Td>{props.balance}</Td> : null}
-              <Td>
+              <Td>{props.showBalance ? props.balance: '-'}</Td>
+              <TdControls>
                   <form action ="#" method="POST">
-                    <button onClick={handleClick}>Refresh</button>
+                    <Button className= "btn btn-info" onClick={handleRefresh}>
+                        Refresh
+                    </Button>
+                    <Button className= "btn btn-warning" onClick={handleBuy}>
+                        Buy
+                    </Button>
+                    <Button className= "btn btn-danger" onClick={handleSell}>
+                        Sell
+                    </Button>
                   </form>  
-              </Td>
+              </TdControls>
             </tr>)
         
 }

@@ -5,6 +5,10 @@ import Header from './components/Header/Header'
 import styled from 'styled-components'
 import axios from 'axios'
 
+//import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootswatch/dist/flatly/bootstrap.min.css'
+import '@fortawesome/fontawesome-free/js/all';
+
 const Div = styled.div `
   text-align: center;
   background-color: rgb(55, 119, 119);
@@ -18,7 +22,7 @@ function App (props){
   
   const [balance,setBalance] = useState(10000);
   const [coinData,setCoinData] = useState([]);
-  const [showBalance,setshowBalance] = useState(true);
+  const [showBalance,setshowBalance] = useState(false);
 
   const componentDidMount = async() => {
     const response = await axios.get('https://api.coinpaprika.com/v1/coins')
@@ -66,18 +70,33 @@ function App (props){
 }
 
   const handleBalanceChange = () => {
-    setBalance(balance + 2000);
+    setBalance(balance + 1200);
+  }
+  const handleTransaction = (isBuy, valueChangeId)=> {
+    var balanceChange = isBuy ? 1: -1;
+    const newCoinData = coinData.map(function(values){
+      let newValues = {...values};
+      if (valueChangeId === values.key){
+          newValues.balance += balanceChange;
+          setBalance(oldBalance => oldBalance - balanceChange * newValues.price)
+      }
+      return newValues;
+    })
+    setCoinData(newCoinData);
   }
 
     return (
       <Div>
         <Header />
-        <AccountBalance amount = {balance} 
+        <AccountBalance 
+         amount = {balance} 
          showBalance={showBalance} 
          handleDisplayChange ={handleDisplayChange}
          handleBalanceChange = {handleBalanceChange}/>
-        <CoinList coinData = {coinData} 
+        <CoinList 
+         coinData = {coinData} 
          handleRefresh={handleRefresh}
+         handleTransaction={handleTransaction}
          showBalance={showBalance} />
       </Div>
     );

@@ -4,12 +4,12 @@ import styled from 'styled-components'
 
 const Head = styled.header `
 background-color: #282c34;
-min-height: 20vh;
+min-height: 10vh;
+width: 100%;
 display: flex;
 flex-direction: row;
 align-items: center;
 justify-content: flex-start;
-font-size: 36px;
 color: white;
 `
 const Img = styled.img `
@@ -17,7 +17,10 @@ height: 8rem;
 pointer-events: none;
 `
 const H1 = styled.h1 `
-font-size: 4rem;
+font-size: 3rem;
+line-height: 8rem;
+font-weight: bold;
+min-width: 300px;
 `
 
 
